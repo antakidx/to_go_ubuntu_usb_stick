@@ -1,0 +1,85 @@
+
+Steps to install Ubuntu onto a USB (AKA "a live USB" or "to-go USB")
+Created by Dom Antaki
+====================================================================
+
+Note 1: you will need at least 2 USB sticks for this whole process.
+Note 2: the downloading and installation process can take a VERY long time, be patient.
+
+
+1.   Download an Ubuntu iso file (any version) to your computer.
+
+2.   Use any USB formatting software to burn the Ubuntu iso file to a USB stick (I personally use Rufus v3.21.1949).
+
+3.   Plug your Ubuntu USB stick and a different USB stick (this other USB stick must be completely empty with all of its storage space available) into a device.
+
+4.   Boot up the device and enter the BIOS menu. Go to the Boot tab of the BIOS menu and boot from the USB stick that has Ubuntu burned onto it.
+
+5.   When your screen gets to the installation window, click on the "Try Ubuntu" option.
+
+6.   Once you are in Ubuntu, press the Windows key on your keyboard, search for "GParted" in the search bar and open the application (this app should automatically be on Ubuntu iso, if it is not then connect to internet, open a terminal, run sudo apt update and then run sudo apt install gparted).
+
+7.   a.   Once in GParted, select your system's hard disk in the upper right-hand drop-down menu (it is the box that has a gray disk in it).  Once you have selected your system's hard drive, look for the partition with anywhere from 100-1000MB in size and flagged as "esp".
+     b.   Right click on this partition and select "Manage Flags".
+     c.   It should show "esp" and "boot" flags.  If there are more flags set, take a screenshot to revert to the same set of flags after installation is complete.
+     d.   Deselect the "esp" flag.  Both the "esp" and "boot" flags should automatically deselect.  When you deselect everything, an "msftdata" flag is added, LEAVE THIS!
+     e.   Click "Close" button.
+     e.   Close out of GParted application.
+
+8.   a.   Ensure that the completely empty USB is plugged in if you did not do so earlier.
+     b.   Double click on the "Install Ubuntu" icon on the desktop.
+     c.   This will start the installation.  You can go through the steps of choosing the keyboard layout and language.
+     d.   When you get to "Updates and other software" screen, ensure that the "Normal installation" option is selected.  Afterwards, click "Continue".
+     e.   On the next screen ("Installation type" is the header), select the "Something else" option and click "Continue".
+     f.   I.   Select the USB that you are installing Ubuntu to.
+          II.   Delete any existing partitions to make free space on the USB (if you do not know how to do this, simply click on a partition and click the - sign that appears between the + sign and "Change..." button).
+          III.   Select the "free space" for the USB.
+          IV.   Now we are going to add partitions to the USB.  View the UbuntuToGoUsbPartitionScheme.txt file to see the steps to create the 3 necessary partitions.
+                            
+          *****NOTE: STEP IV. CANNOT BE SKIPPED, YOU MUST FOLLOW ALL INSTRUCTIONS*****
+                            
+          V.   Ensure that the USB you are installing everything on (and just created new partitions for) is the device selected in the "Device for boot loader installation:" field at the bottom of the screen.
+                            
+          *****NOTE: FOR STEP V. IT IS CRUCIAL THAT YOU SELECT THE CORRECT USB YOU WANT TO INSTALL UBUNTU ON, OTHERWISE YOU WILL HAVE TO RESTART THIS WHOLE PROCESS*****
+                  
+          VI.   Click the "Install Now" button at the bottom of the screen.
+          VII.   When the pop-up window (header is "Write the changes to disk?") appears, click on the "Continue" button.
+
+     g.   Select your timezone.
+     h.   Click "Continue" button.
+     i.   Fill out the "Your name:", "Your computer's name:", "Pick a username:", "Choose a password:", and "Confirm your password:" fields.  The "Require my password to log in" is usually selected default, you can leave that if you wish to enter credentials each time the USB boots up or you can go with the "Log in automatically" option.                                                                
+     j.   Click "Continue" button.
+
+9.   Now comes the fun part: waiting!  The installation time can vary in length, but expect it to take a long time.
+
+*****NOTE: DO NOT CLICK ANYTHING ON THE SCREEN AND DO NOT PRESS ANY KEYS DURING THE INSTALLATION PROCESS*****
+
+10.   When the installation is complete and the pop-up window (header is "Installation Complete") appears, click the "Continue Testing" button.
+
+*****NOTE: IT IS CRUCIAL THAT YOU SELECT THE "Continue Testing" BUTTON, *NOT* THE "Restart Now" BUTTON, IF YOU MAKE THIS MISTAKE, YOU WILL HAVE TO RESTART THE WHOLE PROCESS*****
+
+11.   Once again, press the Windows key on your keyboard and search for "Gparted" in the search bar.  Open the application.
+
+12.   a.   Once in GParted, select your system's hard disk in the upper right-hand drop-down menu (it is the box that has a gray disk in it).  Once you have selected your system's hard drive, look for the partition with anywhere from 100-1000MB in size and flagged as "msftdata".
+      b.   Right click on this partition and select "Manage Flags".
+      c.   Select (checkmark) the box next to the "esp" option.  This will reactivate the "esp" and "boot" flags (FYI do not deselect the "boot" flag).
+
+      *****NOTE: IF YOUR SYSTEM HAD OTHER FLAGS ENABLED BESIDES "boot" AND "esp", ENSURE YOU REACTIVATE THOSE FLAGS*****
+      
+      d.   Click "Close" button.
+      e.   Close GParted application.
+
+13.   You are now done creating your portable Ubuntu bootable USB!  You can shut down the system in the upper right hand corner.
+
+Important notes and final thoughts
+==================================
+Note 1:   From now on, to boot to the to-go USB, you must boot to it from the BIOS boot menu on your computer.
+Note 2:   In the BIOS boot menu, the USB it will appear as "UEFI:  USB DISK ___ PMAP" or "ubuntu ( USB DISK ___ PMAP)".  (The "___" will be the numbered type of your USB, i.e. mine was USB DISK 3.0 PMAP.)
+Note 3:   An Ubuntu GRUB menu will pop up whenever you boot to the USB from the BIOS, simply select the "Ubuntu" option at the top of the menu.
+Note 4:   Be patient with everything, a USB stick will always run much slower than a generic HDD/SSD.
+Note 5:   ***THIS NOTE IS CRUCIAL!***  Any time you want to restart or shut down your USB stick, you must go to the upper right-hand corner and select the "Power Off" option.  You CANNOT just power your computer off while the USB is running, if you do this it can result in data lossage on the USB!!!!!!  Once you have selected your desired "Power Off" option (Shut Down or Restart), wait for the screen to go black; after the screen goes black, wait 20-30 seconds to then power off your computer.
+
+
+References
+==========
+https://itsfoss.com/intsall-ubuntu-on-usb/

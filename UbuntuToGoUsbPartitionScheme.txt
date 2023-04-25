@@ -1,0 +1,33 @@
+First partition
+===============
+Ensure that you are in "free space" of the USB you are installing everything on
+Click + sign
+Set the "Size" field to 5002 MB
+Ensure that "Primary" and "Beginning of this space" options are selected
+Set the "Use as:" field to "FAT32 file system"
+Set the "Mount point:" field to "/windows"
+Click "OK"
+Wait for screen to refresh
+
+
+Second partition
+================
+Select the "free space" again for the USB you are installing everything on
+Click + sign
+Set the "Size" field to 500 MB
+Ensure that "Primary" and "Beginning of this space" options are selected
+Set the "Use as:" field to "EFI System Partition"
+Click "OK"
+Wait for screen to refresh
+
+
+Third partition
+===============
+Select the "free space" again for the USB you are installing everything on
+Click + sign
+Leave the "Size" field as default; the default size should be the remaining free space on the USB.  If the default size is not the remaining free space on the USB then set the "Size" field to take up the remaining free space on the USB
+Ensure that "Primary" and "Beginning of this space" options are selected
+Set the "Use as:" field to "Ext4 journaling file system"
+Set the "Mount point:" field to "/" (just press the / key on your keyboard)
+Click "OK"
+Wait for screen to refresh
